@@ -22,7 +22,7 @@ RUN sed -i 's/Listen 80/Listen 7860/g' /etc/apache2/ports.conf
 RUN sed -i 's/:80/:7860/g' /etc/apache2/sites-available/000-default.conf
 RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
 
-RUN php artisan key:generate
+RUN cp .env.example .env && php artisan key:generate
 
 EXPOSE 7860
 
