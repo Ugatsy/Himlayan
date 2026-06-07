@@ -1,0 +1,90 @@
+@extends('layouts.public')
+
+@section('title', 'Memorial Lots — Heritage Memorial Park')
+
+@section('content')
+    <section class="pt-32 pb-24 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <p class="text-emerald-700 font-semibold text-sm tracking-widest uppercase mb-3">Memorial Lots</p>
+                <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Browse Available Memorial Lots</h1>
+                <p class="text-gray-600 max-w-2xl mx-auto">View our available lots on the interactive map and find the perfect resting place for your loved one.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-2xl shadow-sm p-6">
+                        <h3 class="font-semibold text-gray-900 mb-4">Available Lots</h3>
+                        <div id="plot-list" class="space-y-2 max-h-[500px] overflow-y-auto">
+                            @forelse($plots->where('status', 'available') as $plot)
+                                <div class="plot-entry p-3 rounded-lg border border-gray-200 hover:border-emerald-300 cursor-pointer transition-colors" data-plot-id="{{ $plot->id }}">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium text-gray-900">{{ $plot->plot_number }}</span>
+                                        <span class="text-sm font-semibold text-emerald-700">₱{{ number_format($plot->price, 2) }}</span>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mt-1">{{ $plot->section ?? 'No section' }}</p>
+                                </div>
+                            @empty
+                                <p class="text-gray-500 text-sm text-center py-8">No available lots at this time.</p>
+                            @endforelse
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200 space-y-2">
+                            <a href="{{ route('public.reserve.form', 'lot') }}" class="block w-full text-center px-4 py-3 bg-emerald-700 text-white font-semibold rounded-lg hover:bg-emerald-600 transition-colors">Reserve a Lot</a>
+                            <a href="{{ route('public.find') }}" class="block w-full text-center px-4 py-3 border border-emerald-700 text-emerald-700 font-semibold rounded-lg hover:bg-emerald-50 transition-colors">Find a Loved One</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-2">
+                    <div id="map" class="w-full h-[600px] rounded-2xl shadow-sm overflow-hidden border border-gray-200"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const PLOTS = @json($plotData);
+        const map = L.map('map', {
+            center: [16.5253, 121.1906],
+            zoom: 19,
+            minZoom: 17,
+            maxZoom: 20,
+            maxBounds: L.latLngBounds([16.5217, 121.1862], [16.5290, 121.1951]),
+            maxBoundsViscosity: 1.0,
+        });
+
+        L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            attribution: '&copy; Google',
+        }).addTo(map);
+
+        const markers = [];
+        PLOTS.forEach(plot => {
+            if (!plot.lat && !plot.lng) return;
+            const color = plot.status === 'available' ? '#22c55e' : plot.status === 'reserved' ? '#f59e0b' : '#ef4444';
+            const icon = L.divIcon({
+                className: '',
+                html: `<div style="width:16px;height:16px;background:${color};border:2px solid #fff;border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,.3);"></div>`,
+                iconSize: [16, 16],
+                iconAnchor: [8, 8],
+            });
+            const marker = L.marker([plot.lat, plot.lng], { icon })
+                .bindPopup(`<b>${plot.plot_number}</b><br>${plot.section ?? ''}<br>Status: ${plot.status}<br>Price: ₱${Number(plot.price).toLocaleString()}`);
+            marker._plotId = plot.id;
+            marker.addTo(map);
+            markers.push(marker);
+        });
+
+        document.querySelectorAll('.plot-entry').forEach(el => {
+            el.addEventListener('click', function() {
+                const id = parseInt(this.dataset.plotId);
+                const marker = markers.find(m => m._plotId === id);
+                if (marker) {
+                    map.flyTo(marker.getLatLng(), 18, { duration: 0.5 });
+                    map.once('moveend', () => marker.openPopup());
+                }
+            });
+        });
+    </script>
+@endsection

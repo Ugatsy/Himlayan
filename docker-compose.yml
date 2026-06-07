@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+      - APP_URL=http://localhost:8080
+      - DB_CONNECTION=mysql
+      - DB_HOST=libingguide-12-ugatsy-12.g.aivencloud.com
+      - DB_PORT=11635
+      - DB_DATABASE=defaultdb
+      - DB_USERNAME=avnadmin
+      - DB_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ATTR_SSL_CA=storage/certs/aiven-ca.pem
+      - SESSION_DRIVER=database
+      - CACHE_STORE=database
+      - QUEUE_CONNECTION=database
+    volumes:
+      - storage_data:/app/storage
+    restart: unless-stopped
+
+volumes:
+  storage_data:
