@@ -32,9 +32,8 @@
                                 <p class="text-gray-500 text-sm text-center py-8">No available lots at this time.</p>
                             @endforelse
                         </div>
-                        <div class="mt-4 pt-4 border-t border-gray-200 space-y-2">
+                        <div class="mt-4 pt-4 border-t border-gray-200">
                             <a href="{{ route('public.reserve.form', 'lot') }}" class="block w-full text-center px-4 py-3 bg-emerald-700 text-white font-semibold rounded-lg hover:bg-emerald-600 transition-colors">Reserve a Lot</a>
-                            <a href="{{ route('public.find') }}" class="block w-full text-center px-4 py-3 border border-emerald-700 text-emerald-700 font-semibold rounded-lg hover:bg-emerald-50 transition-colors">Find a Loved One</a>
                         </div>
                     </div>
                 </div>

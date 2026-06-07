@@ -13,7 +13,9 @@ class PublicBookingController extends Controller
 {
     public function plans()
     {
+        $order = ['memorial', 'burial', 'funeral'];
         $plans = PreNeedPlan::where('is_active', true)->orderBy('type')->orderBy('name')->get()->groupBy('type');
+        $plans = collect($order)->mapWithKeys(fn($t) => [$t => $plans->get($t, collect())])->filter(fn($p) => $p->isNotEmpty());
         return view('public.plans', compact('plans'));
     }
 
