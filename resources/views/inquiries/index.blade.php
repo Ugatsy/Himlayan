@@ -1,9 +1,7 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Inquiries') }}</h2>
-    </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-6">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-bold text-gray-900 mb-6">Inquiries</h1>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 border-b border-gray-200 flex justify-between items-center">
                     <span class="text-gray-600">{{ $inquiries->count() }} inquiries</span>
@@ -33,9 +31,9 @@
                             @empty
                                 <tr><td colspan="6">
                                     <div class="py-12 text-center">
-                                        <svg class="w-12 h-12 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+                                        <svg class="w-12 h-12 mx-auto text-gray-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
                                         <p class="text-gray-500 font-medium">No inquiries yet</p>
-                                        <p class="text-gray-400 text-sm mt-1">Inquiries from the website contact form will appear here.</p>
+                                        <p class="text-gray-500 text-sm mt-1">Inquiries from the website contact form will appear here.</p>
                                     </div>
                                 </td></tr>
                             @endforelse

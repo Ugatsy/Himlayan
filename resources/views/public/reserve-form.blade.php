@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'Reserve Online — Heritage Memorial Park')
+@section('title', 'Reserve Online — HIMLAYAN')
 
 @section('content')
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />

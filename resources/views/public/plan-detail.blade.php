@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', $plan->name . ' — Heritage Memorial Park')
+@section('title', $plan->name . ' — HIMLAYAN')
 
 @section('content')
     <section class="pt-32 pb-24 bg-stone-50">

@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'Heritage Memorial Park — A Place of Peace & Legacy')
+@section('title', 'HIMLAYAN — A Place of Peace & Legacy')
 
 @section('content')
     {{-- Hero Section --}}
@@ -11,7 +11,7 @@
         </div>
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
             <div class="max-w-2xl">
-                <p class="inline-block px-4 py-1.5 bg-emerald-700/80 text-white text-sm font-medium rounded-full mb-6">Heritage Memorial Park</p>
+                <p class="inline-block px-4 py-1.5 bg-emerald-700/80 text-white text-sm font-medium rounded-full mb-6">HIMLAYAN</p>
                 <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
                     A Place of<br>
                     <span class="text-emerald-300">Peace & Legacy</span>
@@ -48,7 +48,7 @@
                     <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">A Sanctuary of Life & Legacy</h2>
                     <div class="w-16 h-1 bg-emerald-600 mb-6"></div>
                     <p class="text-gray-600 leading-relaxed mb-4">
-                        Heritage Memorial Park is a place where timeless beauty meets thoughtful design — a sanctuary where families can honor, remember, and celebrate the lives of their loved ones. Nestled in the heart of Solano, Nueva Vizcaya, our memorial park offers a serene and dignified environment for reflection and remembrance.
+                        HIMLAYAN is a place where timeless beauty meets thoughtful design — a sanctuary where families can honor, remember, and celebrate the lives of their loved ones. Nestled in the heart of Solano, Nueva Vizcaya, our memorial park offers a serene and dignified environment for reflection and remembrance.
                     </p>
                     <p class="text-gray-600 leading-relaxed mb-6">
                         We are committed to providing compassionate service and premium memorial solutions that honor your family's legacy for generations.
@@ -147,10 +147,10 @@
                     <p class="text-emerald-300 font-semibold text-sm tracking-widest uppercase mb-3">Columbarium</p>
                     <h2 class="text-3xl sm:text-4xl font-bold mb-4">Heritage Columbarium</h2>
                     <div class="w-16 h-1 bg-emerald-500 mb-6"></div>
-                    <p class="text-gray-300 leading-relaxed mb-6">
+                    <p class="text-gray-500 leading-relaxed mb-6">
                         Introducing <strong class="text-white">Heritage Columbarium</strong>, Nueva Vizcaya's first modern columbarium — a sanctuary of life and legacy thoughtfully created for families seeking a peaceful, dignified, and enduring place of remembrance.
                     </p>
-                    <p class="text-gray-400 mb-8">Our columbarium is under development. Stay tuned for updates.</p>
+                    <p class="text-gray-500 mb-8">Our columbarium is under development. Stay tuned for updates.</p>
                     <div class="flex flex-wrap gap-4">
                         <a href="{{ route('public.columbarium') }}" class="inline-flex items-center px-6 py-3 bg-gray-600 hover:bg-gray-500 text-white font-semibold rounded-lg transition-colors cursor-default opacity-70 pointer-events-none">
                             See Available Vaults
@@ -166,7 +166,7 @@
                             </svg>
                         </div>
                         <p class="text-4xl font-bold text-amber-300 mb-2">COMING SOON</p>
-                        <p class="text-gray-400">Our columbarium is currently under development</p>
+                        <p class="text-gray-500">Our columbarium is currently under development</p>
                     </div>
                 </div>
             </div>
@@ -187,7 +187,7 @@
                     <div class="space-y-4">
                         <div class="flex items-start gap-3">
                             <svg class="w-5 h-5 text-emerald-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                            <div><p class="font-medium text-gray-900">Heritage Memorial Park</p><p class="text-sm text-gray-500">Solano, Nueva Vizcaya</p></div>
+                            <div><p class="font-medium text-gray-900">HIMLAYAN</p><p class="text-sm text-gray-500">Solano, Nueva Vizcaya</p></div>
                         </div>
                         <div class="flex items-start gap-3">
                             <svg class="w-5 h-5 text-emerald-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>

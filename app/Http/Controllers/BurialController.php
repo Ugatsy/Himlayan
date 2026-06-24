@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Burial;
 use App\Models\Plot;
 use App\Models\Contract;
+use App\Notifications\BurialScheduled;
 use Illuminate\Http\Request;
 
 class BurialController extends Controller
@@ -52,6 +53,10 @@ class BurialController extends Controller
             $plot->update(['status' => 'full']);
         } elseif ($plot->status === 'available') {
             $plot->update(['status' => 'occupied']);
+        }
+
+        if ($burial->contract && $burial->contract->client) {
+            $burial->contract->client->notify(new BurialScheduled($burial));
         }
 
         return redirect()->route('burials.index')->with('success', 'Burial scheduled.');

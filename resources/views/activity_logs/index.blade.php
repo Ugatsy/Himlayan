@@ -1,17 +1,17 @@
 <x-app-layout>
-    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Activity Log') }}</h2></x-slot>
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-bold text-gray-900 mb-6">Activity Log</h1>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
                     <div class="space-y-4">
                         @forelse($logs as $log)
                             <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
                                 <div class="w-2 h-2 rounded-full mt-2
-                                    @if($log->type === 'burial') bg-red-500
-                                    @elseif($log->type === 'payment') bg-green-500
-                                    @elseif($log->type === 'contract') bg-blue-500
-                                    @elseif($log->type === 'plot') bg-yellow-500
+                                    @if($log->type === 'burial') bg-red-1000
+                                    @elseif($log->type === 'payment') bg-green-1000
+                                    @elseif($log->type === 'contract') bg-blue-1000
+                                    @elseif($log->type === 'plot') bg-yellow-1000
                                     @else bg-gray-500 @endif
                                 "></div>
                                 <div class="flex-1">

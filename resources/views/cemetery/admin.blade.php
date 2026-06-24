@@ -1,11 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class="flex items-center justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Cemetery Boundary Tool</h2>
-            <a href="{{ route('public.find') }}" class="text-sm text-emerald-700 hover:text-emerald-600 underline">View Public Map</a>
-        </div>
-    </x-slot>
-
     @push('head')
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -39,6 +32,7 @@
 
     <div class="py-6">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-bold text-gray-900 mb-6">Cemetery Administration</h1>
         <div class="flex admin-layout gap-4">
             <!-- Map -->
             <div class="flex-1 flex flex-col" style="min-width:0;">
@@ -47,7 +41,7 @@
                 </div>
                 <div class="control-bar">
                     <span id="pointCount" class="text-sm font-medium text-gray-600">0 points</span>
-                    <span class="text-gray-300">|</span>
+                    <span class="text-gray-500">|</span>
                     <span id="areaDisplay" class="text-sm font-semibold text-emerald-700">Area: —</span>
                     <span class="flex-1"></span>
                     <button onclick="finishPolygon()" id="btnFinish" class="btn btn-primary" disabled>Finish Polygon</button>
@@ -60,7 +54,7 @@
                 <div class="panel-card">
                     <h3 class="font-semibold text-gray-900 mb-2">Coordinates</h3>
                     <ol id="coordList" class="coords-list text-gray-600">
-                        <li class="text-gray-400 text-sm text-center py-4">Click on the map to add vertices</li>
+                        <li class="text-gray-500 text-sm text-center py-4">Click on the map to add vertices</li>
                     </ol>
                 </div>
 
@@ -107,7 +101,7 @@
     <div class="bg-white rounded-2xl p-6 max-w-2xl w-full mx-4 max-h-[80vh] flex flex-col" onclick="event.stopPropagation()">
         <div class="flex items-center justify-between mb-4">
             <h2 class="text-lg font-bold text-gray-900">Grave Markers</h2>
-            <button onclick="closeGraveModal()" class="text-gray-400 hover:text-gray-700 text-2xl">&times;</button>
+            <button onclick="closeGraveModal()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
         </div>
         <input type="text" id="graveSearch" placeholder="Search graves..." oninput="filterGraves()" class="w-full px-3 py-2 border rounded-lg mb-3 text-sm">
         <div id="graveList" class="flex-1 overflow-y-auto text-sm"></div>
@@ -238,7 +232,7 @@
             document.getElementById('btnSave').disabled = true;
             document.getElementById('areaDisplay').textContent = 'Area: —';
             document.getElementById('pointCount').textContent = '0 points';
-            document.getElementById('coordList').innerHTML = '<li class="text-gray-400 text-sm text-center py-4">Click on the map to add vertices</li>';
+            document.getElementById('coordList').innerHTML = '<li class="text-gray-500 text-sm text-center py-4">Click on the map to add vertices</li>';
         }
 
         function removePoint(idx) {
@@ -266,7 +260,7 @@
             document.getElementById('pointCount').textContent = points.length + ' points';
 
             if (points.length === 0) {
-                document.getElementById('coordList').innerHTML = '<li class="text-gray-400 text-sm text-center py-4">Click on the map to add vertices</li>';
+                document.getElementById('coordList').innerHTML = '<li class="text-gray-500 text-sm text-center py-4">Click on the map to add vertices</li>';
                 return;
             }
 
@@ -477,7 +471,7 @@
         function renderGraves(graves) {
             const list = document.getElementById('graveList');
             if (graves.length === 0) {
-                list.innerHTML = '<p class="text-gray-400 text-center py-8">No graves found.</p>';
+                list.innerHTML = '<p class="text-gray-500 text-center py-8">No graves found.</p>';
                 return;
             }
             list.innerHTML = graves.map(g => `
@@ -486,7 +480,7 @@
                         <div class="font-medium text-gray-900">${g.full_name}</div>
                         <div class="text-gray-500 text-xs">${g.plot_number || 'No plot'} ${g.section ? '— ' + g.section : ''}</div>
                     </div>
-                    <span class="text-xs text-gray-400">[${g.latitude}, ${g.longitude}]</span>
+                    <span class="text-xs text-gray-500">[${g.latitude}, ${g.longitude}]</span>
                 </div>
             `).join('');
         }

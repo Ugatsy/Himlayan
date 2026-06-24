@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @section('title', 'Register — Heritage Memorial Park')
+    @section('title', 'Register — HIMLAYAN')
     <form method="POST" action="{{ route('register') }}">
         @csrf
 

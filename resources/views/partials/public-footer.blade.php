@@ -1,10 +1,10 @@
-<footer id="contact" class="bg-gray-900 text-gray-300">
+<footer id="contact" class="bg-gray-900 text-gray-400">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
             <div class="lg:col-span-2">
                 <div class="flex items-center gap-3 mb-4">
-                    <img src="{{ asset('images/heritage-logo.png') }}" alt="Heritage Memorial Park" class="h-10 w-auto brightness-0 invert">
-                    <span class="text-xl font-bold text-white">Heritage Memorial Park</span>
+                    <img src="{{ asset('images/himlayan-logo.png') }}" alt="HIMLAYAN" class="h-10 w-auto brightness-0 invert">
+                    <span class="text-xl font-bold text-white">HIMLAYAN</span>
                 </div>
                 <p class="text-gray-400 mb-6 max-w-md leading-relaxed">
                     A sanctuary of life and legacy — thoughtfully created for families seeking a peaceful, dignified, and enduring place of remembrance.
@@ -31,7 +31,7 @@
             <div>
                 <h3 class="text-white font-semibold mb-4">Visit Us</h3>
                 <p class="text-gray-400 leading-relaxed mb-2">
-                    Heritage Memorial Park<br>
+                    HIMLAYAN<br>
                     Dist. 3, Binacao St., Roxas<br>
                     Solano, Nueva Vizcaya
                 </p>
@@ -63,7 +63,7 @@
         </div>
 
         <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between text-sm text-gray-500">
-            <p>&copy; {{ date('Y') }} Heritage Memorial Park. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} HIMLAYAN. All rights reserved.</p>
             <p class="mt-2 sm:mt-0">Solano, Nueva Vizcaya</p>
         </div>
     </div>

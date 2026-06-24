@@ -1,7 +1,7 @@
 <x-app-layout>
-    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Create Columbary Niche') }}</h2></x-slot>
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-bold text-gray-900 mb-6">Create Columbary Niche</h1>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-16 text-center">
                 <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-amber-100 flex items-center justify-center">
                     <svg class="w-10 h-10 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

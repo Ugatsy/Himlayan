@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-    <h1>Heritage Memorial Park</h1>
+    <h1>HIMLAYAN</h1>
     <h2>Contract of Agreement</h2>
 
     <div class="meta">
@@ -100,12 +100,12 @@
             <div class="line">Client Signature</div>
         </div>
         <div>
-            <div class="line">Heritage Memorial Park Representative</div>
+            <div class="line">HIMLAYAN Representative</div>
         </div>
     </div>
 
     <div class="footer">
-        Heritage Memorial Park — Binacao Road, Brgy. Roxas, Solano, Nueva Vizcaya<br>
+        HIMLAYAN — Binacao Road, Brgy. Roxas, Solano, Nueva Vizcaya<br>
         This document is computer-generated and valid without a physical signature.
     </div>
 </body>

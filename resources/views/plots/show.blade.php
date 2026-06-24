@@ -1,21 +1,21 @@
 <x-app-layout>
-    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Plot') }}: {{ $plot->plot_number }}</h2></x-slot>
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-bold text-gray-900 mb-6">Plot: {{ $plot->plot_number }}</h1>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <dl class="grid grid-cols-2 gap-4 mb-6">
-                    <div><dt class="text-sm text-gray-500">Plot Number</dt><dd class="font-medium">{{ $plot->plot_number }}</dd></div>
-                    <div><dt class="text-sm text-gray-500">Section</dt><dd class="font-medium">{{ $plot->section ?? '—' }}</dd></div>
-                    <div><dt class="text-sm text-gray-500">Coordinates</dt><dd class="font-medium">{{ $plot->lat }}, {{ $plot->lng }}</dd></div>
-                    <div><dt class="text-sm text-gray-500">Status</dt><dd><span class="px-2 py-1 text-xs font-semibold rounded-full
+                    <div><dt class="text-sm text-gray-600">Plot Number</dt><dd class="font-medium">{{ $plot->plot_number }}</dd></div>
+                    <div><dt class="text-sm text-gray-600">Section</dt><dd class="font-medium">{{ $plot->section ?? '—' }}</dd></div>
+                    <div><dt class="text-sm text-gray-600">Coordinates</dt><dd class="font-medium">{{ $plot->lat }}, {{ $plot->lng }}</dd></div>
+                    <div><dt class="text-sm text-gray-600">Status</dt><dd><span class="px-2 py-1 text-xs font-semibold rounded-full
                         @if($plot->status === 'available') bg-green-100 text-green-800
                         @elseif($plot->status === 'reserved') bg-yellow-100 text-yellow-800
                         @elseif($plot->status === 'full') bg-red-200 text-red-900
                         @else bg-red-100 text-red-800 @endif
                     ">{{ $plot->status }}</span></dd></div>
-                    <div><dt class="text-sm text-gray-500">Capacity</dt><dd class="font-medium">{{ $plot->capacity }}</dd></div>
-                    <div><dt class="text-sm text-gray-500">Current Occupants</dt><dd class="font-medium">{{ $plot->current_occupants }}</dd></div>
-                    <div><dt class="text-sm text-gray-500">Price</dt><dd class="font-medium">₱{{ number_format($plot->price, 2) }}</dd></div>
+                    <div><dt class="text-sm text-gray-600">Capacity</dt><dd class="font-medium">{{ $plot->capacity }}</dd></div>
+                    <div><dt class="text-sm text-gray-600">Current Occupants</dt><dd class="font-medium">{{ $plot->current_occupants }}</dd></div>
+                    <div><dt class="text-sm text-gray-600">Price</dt><dd class="font-medium">₱{{ number_format($plot->price, 2) }}</dd></div>
                 </dl>
 
                 @if($plot->burials->count())

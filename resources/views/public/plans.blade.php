@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'Pre-Need Plans — Heritage Memorial Park')
+@section('title', 'Pre-Need Plans — HIMLAYAN')
 
 @section('content')
     <section class="pt-32 pb-24 bg-stone-50">
@@ -49,7 +49,7 @@
                                                 </li>
                                             @endforeach
                                             @if(count($plan->features) > 4)
-                                                <li class="text-sm text-gray-400">+{{ count($plan->features) - 4 }} more features</li>
+                                                <li class="text-sm text-gray-500">+{{ count($plan->features) - 4 }} more features</li>
                                             @endif
                                         </ul>
                                     @endif

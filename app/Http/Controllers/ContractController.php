@@ -7,6 +7,8 @@ use App\Models\Client;
 use App\Models\Plot;
 use App\Models\PreNeedPlan;
 use App\Models\ColumbaryNiche;
+use App\Notifications\ContractApproved;
+use App\Services\RentalComputationService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,9 @@ class ContractController extends Controller
 {
     public function index()
     {
-        $contracts = Contract::with('client', 'plot', 'preNeedPlan', 'columbaryNiche')->orderBy('created_at', 'desc')->get();
+        $contracts = Contract::with('client', 'plot', 'preNeedPlan', 'columbaryNiche')
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('contracts.index', compact('contracts'));
     }
 
@@ -35,10 +39,21 @@ class ContractController extends Controller
             'pre_need_plan_id'   => 'nullable|exists:pre_need_plans,id',
             'columbary_niche_id' => 'nullable|exists:columbary_niches,id',
             'contract_date'      => 'required|date',
+            'contract_type'      => 'nullable|in:new,renewal',
+            'lot_type'           => 'nullable|in:individual,family',
+            'lot_area'           => 'nullable|numeric|min:0',
+            'dimension'          => 'nullable|string|max:100',
+            'commencement_date'  => 'nullable|date',
+            'expiration_date'    => 'nullable|date|after:commencement_date',
             'total_amount'       => 'required|numeric|min:0',
             'payment_type'       => 'required|in:cash,credit_card,installment',
             'status'             => 'nullable|in:active,completed,cancelled',
+            'af_51_number'       => 'nullable|string|max:50',
+            'af_51_date'         => 'nullable|date',
+            'death_certificate_number' => 'nullable|string|max:100',
         ]);
+
+        $validated['prepared_by'] = auth()->id();
 
         $contract = Contract::create($validated);
 
@@ -61,7 +76,7 @@ class ContractController extends Controller
 
     public function show(Contract $contract)
     {
-        $contract->load('client', 'plot', 'preNeedPlan', 'columbaryNiche', 'payments', 'installmentSchedules', 'burials');
+        $contract->load('client', 'plot', 'preNeedPlan', 'columbaryNiche', 'preparedBy', 'payments', 'installmentSchedules', 'burials', 'burialPermits');
         return view('contracts.show', compact('contract'));
     }
 
@@ -82,9 +97,18 @@ class ContractController extends Controller
             'pre_need_plan_id'   => 'nullable|exists:pre_need_plans,id',
             'columbary_niche_id' => 'nullable|exists:columbary_niches,id',
             'contract_date'      => 'required|date',
+            'contract_type'      => 'nullable|in:new,renewal',
+            'lot_type'           => 'nullable|in:individual,family',
+            'lot_area'           => 'nullable|numeric|min:0',
+            'dimension'          => 'nullable|string|max:100',
+            'commencement_date'  => 'nullable|date',
+            'expiration_date'    => 'nullable|date|after:commencement_date',
             'total_amount'       => 'required|numeric|min:0',
             'payment_type'       => 'required|in:cash,credit_card,installment',
             'status'             => 'nullable|in:active,completed,cancelled',
+            'af_51_number'       => 'nullable|string|max:50',
+            'af_51_date'         => 'nullable|date',
+            'death_certificate_number' => 'nullable|string|max:100',
         ]);
 
         $contract->update($validated);
@@ -101,8 +125,42 @@ class ContractController extends Controller
 
     public function pdf(Contract $contract)
     {
-        $contract->load('client', 'plot', 'preNeedPlan', 'columbaryNiche', 'payments', 'installmentSchedules');
+        $contract->load('client', 'plot', 'preNeedPlan', 'columbaryNiche', 'payments', 'installmentSchedules', 'preparedBy');
         $pdf = Pdf::loadView('contracts.pdf', compact('contract'));
         return $pdf->download("contract-{$contract->id}.pdf");
+    }
+
+    public function approveTreasurer(Contract $contract)
+    {
+        if (!auth()->user()->isTreasurer()) {
+            abort(403, 'Only the Treasurer can approve at this level.');
+        }
+
+        $contract->update([
+            'approved_by_treasurer_at' => now(),
+        ]);
+
+        if ($contract->client) {
+            $contract->client->notify(new ContractApproved($contract, 'treasurer'));
+        }
+
+        return back()->with('success', 'Contract approved by Treasurer.');
+    }
+
+    public function approveMayor(Contract $contract)
+    {
+        if (!auth()->user()->isMayor()) {
+            abort(403, 'Only the Mayor can approve at this level.');
+        }
+
+        $contract->update([
+            'approved_by_mayor_at' => now(),
+        ]);
+
+        if ($contract->client) {
+            $contract->client->notify(new ContractApproved($contract, 'mayor'));
+        }
+
+        return back()->with('success', 'Contract approved by Mayor.');
     }
 }

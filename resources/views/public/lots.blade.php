@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'Memorial Lots — Heritage Memorial Park')
+@section('title', 'Memorial Lots — HIMLAYAN')
 
 @section('content')
     <section class="pt-32 pb-24 bg-stone-50">

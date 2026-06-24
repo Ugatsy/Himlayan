@@ -1,10 +1,7 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Plot Map') }}</h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-6">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-bold text-gray-900 mb-6">Plots</h1>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
                     <div style="display: flex; gap: 20px;">
@@ -28,7 +25,7 @@
                                         </span>
                                         <div class="flex gap-2 mt-1">
                                             <button type="button" class="btn-relocate text-xs px-2 py-0.5 rounded border border-amber-500 text-amber-700 hover:bg-amber-50" data-id="{{ $plot->id }}" title="Click map to reposition" style="cursor: pointer;">Relocate</button>
-                                            <button type="button" class="btn-remove text-xs px-2 py-0.5 rounded border border-red-400 text-red-600 hover:bg-red-50" data-id="{{ $plot->id }}" title="Remove pin from map" style="cursor: pointer;">Remove</button>
+                                            <button type="button" class="btn-remove text-xs px-2 py-0.5 rounded border border-red-400 text-red-600 hover:bg-red-100" data-id="{{ $plot->id }}" title="Remove pin from map" style="cursor: pointer;">Remove</button>
                                         </div>
                                     </div>
                                 @endforeach

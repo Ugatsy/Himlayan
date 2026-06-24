@@ -10,7 +10,7 @@ class Role
 {
     public function handle(Request $request, Closure $next, string ...$roles): Response
     {
-        if (!$request->user() || !in_array($request->user()->role, $roles)) {
+        if (!$request->user() || !$request->user()->hasRole($roles)) {
             abort(403, 'Unauthorized access.');
         }
         return $next($request);

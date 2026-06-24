@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @section('title', 'Log In — Heritage Memorial Park')
+    @section('title', 'Log In — HIMLAYAN')
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 

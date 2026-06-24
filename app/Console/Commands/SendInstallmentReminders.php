@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\InstallmentSchedule;
 use App\Models\Notification;
+use App\Notifications\InstallmentReminder;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
@@ -27,6 +28,10 @@ class SendInstallmentReminders extends Command
                     'type'    => 'installment_due',
                     'link'    => "/contracts/{$schedule->contract_id}",
                 ]);
+
+                if ($schedule->contract->client) {
+                    $schedule->contract->client->notify(new InstallmentReminder($schedule));
+                }
             });
 
         $this->info('Installment reminders sent.');

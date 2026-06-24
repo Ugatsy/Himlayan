@@ -1,14 +1,14 @@
 <x-app-layout>
-    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $client->full_name }}</h2></x-slot>
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-bold text-gray-900 mb-6">{{ $client->full_name }}</h1>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 mb-6">
                 <dl class="grid grid-cols-2 gap-4">
-                    <div><dt class="text-sm text-gray-500">Full Name</dt><dd class="font-medium">{{ $client->full_name }}</dd></div>
-                    <div><dt class="text-sm text-gray-500">Contact Number</dt><dd class="font-medium">{{ $client->contact_number }}</dd></div>
-                    <div><dt class="text-sm text-gray-500">Email</dt><dd class="font-medium">{{ $client->email ?? '—' }}</dd></div>
-                    <div><dt class="text-sm text-gray-500">ID</dt><dd class="font-medium">{{ $client->id_type }}: {{ $client->id_number }}</dd></div>
-                    <div class="col-span-2"><dt class="text-sm text-gray-500">Address</dt><dd class="font-medium">{{ $client->address }}</dd></div>
+                    <div><dt class="text-sm text-gray-600">Full Name</dt><dd class="font-medium">{{ $client->full_name }}</dd></div>
+                    <div><dt class="text-sm text-gray-600">Contact Number</dt><dd class="font-medium">{{ $client->contact_number }}</dd></div>
+                    <div><dt class="text-sm text-gray-600">Email</dt><dd class="font-medium">{{ $client->email ?? '—' }}</dd></div>
+                    <div><dt class="text-sm text-gray-600">ID</dt><dd class="font-medium">{{ $client->id_type }}: {{ $client->id_number }}</dd></div>
+                    <div class="col-span-2"><dt class="text-sm text-gray-600">Address</dt><dd class="font-medium">{{ $client->address }}</dd></div>
                 </dl>
                 <div class="mt-4 flex gap-4">
                     <a href="{{ route('clients.edit', $client) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>

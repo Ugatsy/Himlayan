@@ -1,7 +1,7 @@
 <x-app-layout>
-    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Add Plot') }}</h2></x-slot>
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-bold text-gray-900 mb-6">Add Plot</h1>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <form method="POST" action="{{ route('plots.store') }}">
                     @csrf
@@ -9,7 +9,7 @@
                         <div>
                             <p class="text-sm font-medium text-gray-700 mb-2">Click on the map to place the plot</p>
                             <div id="map" style="height: 450px; border: 2px solid #e5e7eb; border-radius: 6px;"></div>
-                            <p class="text-xs text-gray-400 mt-2">Click anywhere on the map to set the location. Drag the marker to fine-tune.</p>
+                            <p class="text-xs text-gray-500 mt-2">Click anywhere on the map to set the location. Drag the marker to fine-tune.</p>
                         </div>
                         <div class="space-y-4">
                             <div>

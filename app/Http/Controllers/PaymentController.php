@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Payment;
 use App\Models\Contract;
+use App\Notifications\PaymentReceived;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -37,7 +38,11 @@ class PaymentController extends Controller
         $validated['paid_at'] = $validated['paid_at'] ?? now();
         $validated['receipt_number'] = $validated['receipt_number'] ?? 'RCP-' . strtoupper(uniqid());
 
-        Payment::create($validated);
+        $payment = Payment::create($validated);
+
+        if ($payment->contract && $payment->contract->client) {
+            $payment->contract->client->notify(new PaymentReceived($payment));
+        }
 
         return redirect()->route('payments.index')->with('success', 'Payment recorded.');
     }

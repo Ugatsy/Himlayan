@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', config('app.name', 'Heritage Memorial Park'))
+@section('title', config('app.name', 'HIMLAYAN'))
 
 @section('content')
     <div class="min-h-screen flex flex-col items-center justify-center px-4 pt-24 pb-16">

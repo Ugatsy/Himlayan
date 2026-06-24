@@ -1,7 +1,7 @@
 <x-app-layout>
-    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Payments') }}</h2></x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-6">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-bold text-gray-900 mb-6">Payments</h1>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 border-b border-gray-200 flex justify-between items-center">
                     <span class="text-gray-600">{{ $payments->count() }} payments</span>
@@ -26,9 +26,9 @@
                             @empty
                                 <tr><td colspan="7">
                                     <div class="py-12 text-center">
-                                        <svg class="w-12 h-12 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                        <svg class="w-12 h-12 mx-auto text-gray-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                         <p class="text-gray-500 font-medium">No payments recorded</p>
-                                        <p class="text-gray-400 text-sm mt-1">Record a payment when a client makes a transaction.</p>
+                                        <p class="text-gray-500 text-sm mt-1">Record a payment when a client makes a transaction.</p>
                                         <a href="{{ route('payments.create') }}" class="inline-block mt-4 bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 text-sm">+ Record Payment</a>
                                     </div>
                                 </td></tr>

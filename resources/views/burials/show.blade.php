@@ -1,19 +1,19 @@
 <x-app-layout>
-    <x-slot name="header"><h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $burial->deceased_name }}</h2></x-slot>
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-bold text-gray-900 mb-6">{{ $burial->deceased_name }}</h1>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 mb-6">
                 <dl class="grid grid-cols-2 gap-4">
-                    <div><dt class="text-sm text-gray-500">Deceased Name</dt><dd class="font-medium">{{ $burial->deceased_name }}</dd></div>
-                    <div><dt class="text-sm text-gray-500">Plot</dt><dd class="font-medium"><a href="{{ route('plots.show', $burial->plot) }}" class="text-indigo-600 hover:text-indigo-900">{{ $burial->plot->plot_number }}</a></dd></div>
-                    <div><dt class="text-sm text-gray-500">Date of Birth</dt><dd class="font-medium">{{ $burial->date_of_birth?->format('M d, Y') ?? '—' }}</dd></div>
-                    <div><dt class="text-sm text-gray-500">Date of Death</dt><dd class="font-medium">{{ $burial->date_of_death->format('M d, Y') }}</dd></div>
-                    <div><dt class="text-sm text-gray-500">Burial Date</dt><dd class="font-medium">{{ $burial->burial_date->format('M d, Y g:i A') }}</dd></div>
-                    <div><dt class="text-sm text-gray-500">Status</dt><dd><span class="px-2 py-1 text-xs font-semibold rounded-full @if($burial->burial_status === 'completed') bg-green-100 text-green-800 @elseif($burial->burial_status === 'scheduled') bg-blue-100 text-blue-800 @else bg-gray-100 text-gray-800 @endif">{{ $burial->burial_status }}</span></dd></div>
-                    <div><dt class="text-sm text-gray-500">Scheduled By</dt><dd class="font-medium">{{ $burial->scheduledBy->name ?? '—' }}</dd></div>
-                    <div><dt class="text-sm text-gray-500">Approved At</dt><dd class="font-medium">{{ $burial->approved_at?->format('M d, Y g:i A') ?? 'Not yet approved' }}</dd></div>
+                    <div><dt class="text-sm text-gray-600">Deceased Name</dt><dd class="font-medium">{{ $burial->deceased_name }}</dd></div>
+                    <div><dt class="text-sm text-gray-600">Plot</dt><dd class="font-medium"><a href="{{ route('plots.show', $burial->plot) }}" class="text-indigo-600 hover:text-indigo-900">{{ $burial->plot->plot_number }}</a></dd></div>
+                    <div><dt class="text-sm text-gray-600">Date of Birth</dt><dd class="font-medium">{{ $burial->date_of_birth?->format('M d, Y') ?? '—' }}</dd></div>
+                    <div><dt class="text-sm text-gray-600">Date of Death</dt><dd class="font-medium">{{ $burial->date_of_death->format('M d, Y') }}</dd></div>
+                    <div><dt class="text-sm text-gray-600">Burial Date</dt><dd class="font-medium">{{ $burial->burial_date->format('M d, Y g:i A') }}</dd></div>
+                    <div><dt class="text-sm text-gray-600">Status</dt><dd><span class="px-2 py-1 text-xs font-semibold rounded-full @if($burial->burial_status === 'completed') bg-green-100 text-green-800 @elseif($burial->burial_status === 'scheduled') bg-blue-100 text-blue-800 @else bg-gray-100 text-gray-800 @endif">{{ $burial->burial_status }}</span></dd></div>
+                    <div><dt class="text-sm text-gray-600">Scheduled By</dt><dd class="font-medium">{{ $burial->scheduledBy->name ?? '—' }}</dd></div>
+                    <div><dt class="text-sm text-gray-600">Approved At</dt><dd class="font-medium">{{ $burial->approved_at?->format('M d, Y g:i A') ?? 'Not yet approved' }}</dd></div>
                     @if($burial->notes)
-                        <div class="col-span-2"><dt class="text-sm text-gray-500">Notes</dt><dd class="font-medium">{{ $burial->notes }}</dd></div>
+                        <div class="col-span-2"><dt class="text-sm text-gray-600">Notes</dt><dd class="font-medium">{{ $burial->notes }}</dd></div>
                     @endif
                 </dl>
                 <div class="mt-4 flex gap-4">

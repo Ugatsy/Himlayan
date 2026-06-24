@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'Columbarium — Coming Soon — Heritage Memorial Park')
+@section('title', 'Columbarium — Coming Soon — HIMLAYAN')
 
 @section('content')
     <section class="min-h-screen flex items-center justify-center bg-gray-900 text-white">
@@ -11,8 +11,8 @@
                 </svg>
             </div>
             <h1 class="text-4xl sm:text-5xl font-bold mb-4">Coming Soon</h1>
-            <p class="text-xl text-gray-300 mb-2">Heritage Columbarium</p>
-            <p class="text-gray-400 max-w-md mx-auto">Our columbarium is currently under development. We'll be offering modern columbary niches soon — check back later.</p>
+            <p class="text-xl text-gray-500 mb-2">Heritage Columbarium</p>
+            <p class="text-gray-500 max-w-md mx-auto">Our columbarium is currently under development. We'll be offering modern columbary niches soon — check back later.</p>
         </div>
     </section>
 @endsection

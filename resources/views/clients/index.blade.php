@@ -1,13 +1,11 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Clients') }}</h2>
-    </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-6">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <h1 class="text-2xl font-bold text-gray-900 mb-6">Clients</h1>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 border-b border-gray-200 flex flex-wrap items-center justify-between gap-4">
                     <div class="flex items-center gap-4">
-                        <span class="text-gray-600">{{ $clients->total() ?? $clients->count() }} clients</span>
+                        <span class="text-gray-600">{{ $clients->count() }} clients</span>
                         <input type="text" id="search-clients" placeholder="Search by name or contact…" class="rounded-lg border-gray-300 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500 w-64">
                     </div>
                     <a href="{{ route('clients.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 text-sm">+ Add Client</a>
@@ -30,9 +28,9 @@
                             @empty
                                 <tr id="empty-row"><td colspan="5">
                                     <div class="py-12 text-center">
-                                        <svg class="w-12 h-12 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                        <svg class="w-12 h-12 mx-auto text-gray-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                         <p class="text-gray-500 font-medium">No clients yet</p>
-                                        <p class="text-gray-400 text-sm mt-1">Start by adding your first client.</p>
+                                        <p class="text-gray-500 text-sm mt-1">Start by adding your first client.</p>
                                         <a href="{{ route('clients.create') }}" class="inline-block mt-4 bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 text-sm">+ Add Client</a>
                                     </div>
                                 </td></tr>
