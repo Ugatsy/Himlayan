@@ -10,37 +10,7 @@ class DataSeeder extends Seeder
     public function run(): void
     {
 
-        // ========== roles ==========
-        DB::table('roles')->insert([
-            [
-                'id' => 1,
-                'name' => 'admin',
-                'display_name' => 'Admin',
-                'created_at' => '2026-06-24 15:20:55',
-                'updated_at' => '2026-06-24 15:20:55',
-            ],
-            [
-                'id' => 2,
-                'name' => 'rcc_staff',
-                'display_name' => 'RCC Staff',
-                'created_at' => '2026-06-24 15:20:55',
-                'updated_at' => '2026-06-24 15:20:55',
-            ],
-            [
-                'id' => 3,
-                'name' => 'treasurer',
-                'display_name' => 'Treasurer',
-                'created_at' => '2026-06-24 15:20:55',
-                'updated_at' => '2026-06-24 15:20:55',
-            ],
-            [
-                'id' => 4,
-                'name' => 'mayor',
-                'display_name' => 'Mayor',
-                'created_at' => '2026-06-24 15:20:55',
-                'updated_at' => '2026-06-24 15:20:55',
-            ],
-        ]);
+
 
         // ========== users ==========
         DB::table('users')->insert([
