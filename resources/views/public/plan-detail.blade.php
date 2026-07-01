@@ -17,7 +17,7 @@
                 <div class="p-8">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="text-xs px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 capitalize font-semibold">{{ $plan->type }}</span>
-                        <span class="text-xs px-3 py-1 rounded-full bg-blue-100 text-blue-800 font-semibold">Pre-Need Plan</span>
+                        <span class="text-xs px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-semibold">Pre-Need Plan</span>
                     </div>
                     <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">{{ $plan->name }}</h1>
                     <p class="text-gray-600 text-lg mb-8">{{ $plan->description }}</p>

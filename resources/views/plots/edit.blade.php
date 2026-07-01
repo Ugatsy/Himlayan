@@ -1,8 +1,8 @@
 <x-app-layout>
-    <div class="py-6">
-        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+    <div>
+        <div class="max-w-6xl mx-auto">
             <h1 class="text-2xl font-bold text-gray-900 mb-6">Edit Plot: {{ $plot->plot_number }}</h1>
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                 <div class="grid lg:grid-cols-5 gap-8">
                     <div class="lg:col-span-3">
                         <p class="text-sm font-medium text-gray-700 mb-2">Click a shape to edit it, or draw a new rectangle to replace it</p>
@@ -20,48 +20,48 @@
                             <div class="space-y-4">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Plot Number</label>
-                                    <input type="text" name="plot_number" value="{{ old('plot_number', $plot->plot_number) }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                    <input type="text" name="plot_number" value="{{ old('plot_number', $plot->plot_number) }}" required class="mt-1 block w-full rounded-md bg-white border-gray-100 text-gray-900 shadow-sm focus:border-brand-blue focus:ring-brand-blue">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Section / Block</label>
-                                    <input type="text" name="section" value="{{ old('section', $plot->section) }}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                    <input type="text" name="section" value="{{ old('section', $plot->section) }}" class="mt-1 block w-full rounded-md bg-white border-gray-100 text-gray-900 shadow-sm focus:border-brand-blue focus:ring-brand-blue">
                                 </div>
                                 <div class="grid grid-cols-2 gap-4">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Lot Type</label>
-                                        <select name="lot_type" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                        <select name="lot_type" class="mt-1 block w-full rounded-md bg-white border-gray-100 text-gray-900 shadow-sm focus:border-brand-blue focus:ring-brand-blue">
                                             <option value="individual" {{ ($plot->lot_type ?? 'individual') === 'individual' ? 'selected' : '' }}>Individual</option>
                                             <option value="family" {{ $plot->lot_type === 'family' ? 'selected' : '' }}>Family</option>
                                         </select>
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Dimension</label>
-                                        <input type="text" name="dimension" value="{{ old('dimension', $plot->dimension) }}" placeholder="e.g. 1.5m × 2.5m" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                        <input type="text" name="dimension" value="{{ old('dimension', $plot->dimension) }}" placeholder="e.g. 1.5m × 2.5m" class="mt-1 block w-full rounded-md bg-white border-gray-100 text-gray-900 shadow-sm focus:border-brand-blue focus:ring-brand-blue">
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-2 gap-4">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Latitude</label>
-                                        <input type="text" id="lat-display" readonly class="mt-1 block w-full rounded-md bg-gray-50 border-gray-300 text-sm text-gray-600" value="{{ $plot->lat }}">
+                                        <input type="text" id="lat-display" readonly class="mt-1 block w-full rounded-md bg-gray-50 border-gray-100 text-sm text-gray-500" value="{{ $plot->lat }}">
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Longitude</label>
-                                        <input type="text" id="lng-display" readonly class="mt-1 block w-full rounded-md bg-gray-50 border-gray-300 text-sm text-gray-600" value="{{ $plot->lng }}">
+                                        <input type="text" id="lng-display" readonly class="mt-1 block w-full rounded-md bg-gray-50 border-gray-100 text-sm text-gray-500" value="{{ $plot->lng }}">
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-2 gap-4">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Capacity</label>
-                                        <input type="number" name="capacity" value="{{ old('capacity', $plot->capacity) }}" min="1" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                        <input type="number" name="capacity" value="{{ old('capacity', $plot->capacity) }}" min="1" class="mt-1 block w-full rounded-md bg-white border-gray-100 text-gray-900 shadow-sm focus:border-brand-blue focus:ring-brand-blue">
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Price (₱)</label>
-                                        <input type="number" step="0.01" name="price" value="{{ old('price', $plot->price) }}" min="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                        <input type="number" step="0.01" name="price" value="{{ old('price', $plot->price) }}" min="0" class="mt-1 block w-full rounded-md bg-white border-gray-100 text-gray-900 shadow-sm focus:border-brand-blue focus:ring-brand-blue">
                                     </div>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Status</label>
-                                    <select name="status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                    <select name="status" class="mt-1 block w-full rounded-md bg-white border-gray-100 text-gray-900 shadow-sm focus:border-brand-blue focus:ring-brand-blue">
                                         @foreach(['available','reserved','occupied','full'] as $s)
                                             <option value="{{ $s }}" {{ $plot->status === $s ? 'selected' : '' }}>{{ ucfirst($s) }}</option>
                                         @endforeach
@@ -69,11 +69,11 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Notes</label>
-                                    <textarea name="notes" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ old('notes', $plot->notes) }}</textarea>
+                                    <textarea name="notes" rows="3" class="mt-1 block w-full rounded-md bg-white border-gray-100 text-gray-900 shadow-sm focus:border-brand-blue focus:ring-brand-blue">{{ old('notes', $plot->notes) }}</textarea>
                                 </div>
                                 <div class="flex items-center justify-end gap-4 pt-2">
-                                    <a href="{{ route('plots.index') }}" class="text-gray-600 hover:text-gray-900">Cancel</a>
-                                    <button type="submit" id="submit-btn" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Update</button>
+                                    <a href="{{ route('plots.index') }}" class="text-gray-500 hover:text-gray-700">Cancel</a>
+                                    <button type="submit" id="submit-btn" class="bg-brand-blue text-white px-4 py-2 rounded-xl hover:bg-brand-blue-dark">Update</button>
                                 </div>
                             </div>
                         </form>

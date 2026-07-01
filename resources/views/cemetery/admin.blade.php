@@ -146,7 +146,7 @@
     function showToast(msg, type) {
         const el = document.createElement('div');
         el.className = 'fixed top-4 right-4 z-[9999] px-5 py-3 rounded-lg text-white font-medium shadow-lg text-sm ' +
-            (type === 'success' ? 'bg-emerald-600' : type === 'error' ? 'bg-red-600' : 'bg-blue-600');
+            (type === 'success' ? 'bg-brand-blue' : type === 'error' ? 'bg-red-600' : 'bg-brand-blue-dark');
         el.textContent = msg;
         document.body.appendChild(el);
         setTimeout(() => el.remove(), 3000);

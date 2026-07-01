@@ -1,8 +1,8 @@
 <x-app-layout>
-    <div class="py-6">
-        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+    <div>
+        <div class="max-w-5xl mx-auto">
             <h1 class="text-2xl font-bold text-gray-900 mb-6">Activity Log</h1>
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100">
                 <div class="p-6">
                     <div class="space-y-4">
                         @forelse($logs as $log)
@@ -21,7 +21,7 @@
                                         @if($log->user) by {{ $log->user->name }} @endif
                                     </p>
                                 </div>
-                                <span class="text-xs px-2 py-1 rounded-full bg-gray-200 text-gray-700">{{ $log->type }}</span>
+                                <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-600">{{ $log->type }}</span>
                             </div>
                         @empty
                             <p class="text-center text-gray-500 py-8">No activity recorded yet.</p>

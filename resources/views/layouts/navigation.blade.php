@@ -1,149 +1,127 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
-    @php $role = auth()->user()->role?->name; @endphp
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
-                </div>
-                <div class="hidden space-x-6 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">{{ __('Dashboard') }}</x-nav-link>
-                    @if(in_array($role, ['super_admin', 'rcc_staff']))
-                    <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.*')">{{ __('Clients') }}</x-nav-link>
-                    <x-nav-link :href="route('plots.index')" :active="request()->routeIs('plots.*') || request()->routeIs('burials.*') || request()->routeIs('deceased.*')">{{ __('Lots & Burials') }}</x-nav-link>
-                    <x-nav-link :href="route('burial-permits.index')" :active="request()->routeIs('burial-permits.*')">{{ __('Permits (AF 58)') }}</x-nav-link>
-                    @endif
-                    <x-nav-link :href="route('contracts.index')" :active="request()->routeIs('contracts.*') || request()->routeIs('payments.*')">{{ __('Contracts & Billing') }}</x-nav-link>
-                    @if(in_array($role, ['super_admin', 'rcc_staff']))
-                    <div x-data="{ open: false }" @mouseleave="open = false" class="relative">
-                        <button @mouseenter="open = true" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 transition duration-150 ease-in-out h-16 border-b-2 border-transparent">
-                            {{ __('Services') }}
-                            <svg class="ms-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/></svg>
-                        </button>
-                        <div x-show="open" @mouseenter="open = true" @mouseleave="open = false" x-transition class="absolute left-0 mt-0 pt-1 w-56 z-[1000]" x-cloak>
-                            <div class="bg-white rounded-lg shadow-lg ring-1 ring-black/5 py-2">
-                                <a href="{{ route('pre-need-plans.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 {{ request()->routeIs('pre-need-plans.*') ? 'bg-emerald-50 text-emerald-800 font-medium' : '' }}">Pre-Need Plans</a>
-                                <a href="{{ route('columbary-niches.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 {{ request()->routeIs('columbary-niches.*') ? 'bg-emerald-50 text-emerald-800 font-medium' : '' }}">Columbary Niches</a>
-                                @if($role === 'super_admin')
-                                <div class="border-t border-gray-100 my-1"></div>
-                                <a href="{{ route('burial-spots.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 {{ request()->routeIs('burial-spots.*') ? 'bg-emerald-50 text-emerald-800 font-medium' : '' }}">Legacy Map</a>
-                                <a href="{{ route('cemetery.admin') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 {{ request()->routeIs('cemetery.*') ? 'bg-emerald-50 text-emerald-800 font-medium' : '' }}">Cemetery Map</a>
-                                <a href="{{ route('paths.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 {{ request()->routeIs('paths.*') ? 'bg-emerald-50 text-emerald-800 font-medium' : '' }}">Pathways</a>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                    <x-nav-link :href="route('inquiries.index')" :active="request()->routeIs('inquiries.*')">{{ __('Inquiries') }}</x-nav-link>
-                    <x-nav-link :href="route('client-notifications.index')" :active="request()->routeIs('client-notifications.*')">{{ __('Client Notifs') }}</x-nav-link>
-                    @endif
-                    @if($role === 'engr')
-                    <div x-data="{ open: false }" @mouseleave="open = false" class="relative">
-                        <button @mouseenter="open = true" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 transition duration-150 ease-in-out h-16 border-b-2 border-transparent">
-                            {{ __('Map') }}
-                            <svg class="ms-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/></svg>
-                        </button>
-                        <div x-show="open" @mouseenter="open = true" @mouseleave="open = false" x-transition class="absolute left-0 mt-0 pt-1 w-48 z-[1000]" x-cloak>
-                            <div class="bg-white rounded-lg shadow-lg ring-1 ring-black/5 py-2">
-                                <a href="{{ route('cemetery.admin') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 {{ request()->routeIs('cemetery.*') ? 'bg-emerald-50 text-emerald-800 font-medium' : '' }}">Cemetery Polygons</a>
-                                <a href="{{ route('plots.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 {{ request()->routeIs('plots.*') ? 'bg-emerald-50 text-emerald-800 font-medium' : '' }}">Burial Plotting & Blocks</a>
-                                <a href="{{ route('paths.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-800 {{ request()->routeIs('paths.*') ? 'bg-emerald-50 text-emerald-800 font-medium' : '' }}">Map Pathing</a>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    @if($role === 'super_admin')
-                    <x-nav-link :href="route('activity-logs.index')" :active="request()->routeIs('activity-logs.*')">{{ __('Activity Logs') }}</x-nav-link>
-                    @endif
-                    <x-nav-link :href="route('notifications.index')" :active="request()->routeIs('notifications.*')">{{ __('Notifications') }}</x-nav-link>
-                </div>
-            </div>
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
-                            <div class="ms-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">{{ __('Profile') }}</x-dropdown-link>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <x-dropdown-link :href="route('logout')"
-                                onclick="event.preventDefault(); this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-            </div>
-            <div class="-me-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-brand-blue">
+    <div class="px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <!-- Left: Logo + Mobile Hamburger -->
+            <div class="flex items-center gap-2">
+                <button @click="mobileNavOpen = !mobileNavOpen" class="lg:hidden inline-flex items-center justify-center p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 focus:outline-none">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        <path :class="{'hidden': mobileNavOpen, 'inline-flex': !mobileNavOpen}" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path :class="{'hidden': !mobileNavOpen, 'inline-flex': mobileNavOpen}" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
+                <a href="{{ route('dashboard') }}" class="flex items-center gap-2 text-white shrink-0">
+                    <img src="{{ asset('images/himlayan-logo.png') }}" alt="HIMLAYAN" class="block h-8 w-auto">
+                    <span class="font-bold text-lg hidden sm:inline">HIMLAYAN</span>
+                </a>
+            </div>
+
+            <!-- Center: Desktop Nav Links (wraps naturally, no scroll) -->
+            <div class="hidden lg:flex items-center gap-1 flex-1 justify-center">
+                <a class="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition duration-150 ease-in-out {{ request()->routeIs('dashboard') ? 'text-white bg-white/15' : 'text-white/80 hover:text-white hover:bg-white/10' }}" href="{{ route('dashboard') }}">
+                    Dashboard
+                </a>
+                <a class="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition duration-150 ease-in-out {{ request()->routeIs('clients.*') ? 'text-white bg-white/15' : 'text-white/80 hover:text-white hover:bg-white/10' }}" href="{{ route('clients.index') }}">
+                    Clients
+                </a>
+                <a class="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition duration-150 ease-in-out {{ request()->routeIs('plots.*') || request()->routeIs('burials.*') || request()->routeIs('deceased.*') ? 'text-white bg-white/15' : 'text-white/80 hover:text-white hover:bg-white/10' }}" href="{{ route('plots.index') }}">
+                    Lots &amp; Burials
+                </a>
+                <a class="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition duration-150 ease-in-out {{ request()->routeIs('burial-permits.*') ? 'text-white bg-white/15' : 'text-white/80 hover:text-white hover:bg-white/10' }}" href="{{ route('burial-permits.index') }}">
+                    Permits
+                </a>
+                <a class="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition duration-150 ease-in-out {{ request()->routeIs('contracts.*') || request()->routeIs('payments.*') ? 'text-white bg-white/15' : 'text-white/80 hover:text-white hover:bg-white/10' }}" href="{{ route('contracts.index') }}">
+                    Contracts &amp; Billing
+                </a>
+                <a class="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition duration-150 ease-in-out {{ request()->routeIs('inquiries.*') ? 'text-white bg-white/15' : 'text-white/80 hover:text-white hover:bg-white/10' }}" href="{{ route('inquiries.index') }}">
+                    Inquiries
+                </a>
+                <a class="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition duration-150 ease-in-out {{ request()->routeIs('client-notifications.*') ? 'text-white bg-white/15' : 'text-white/80 hover:text-white hover:bg-white/10' }}" href="{{ route('client-notifications.index') }}">
+                    Client Notifs
+                </a>
+                <a class="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition duration-150 ease-in-out {{ request()->routeIs('activity-logs.*') ? 'text-white bg-white/15' : 'text-white/80 hover:text-white hover:bg-white/10' }}" href="{{ route('activity-logs.index') }}">
+                    Activity Logs
+                </a>
+
+                <!-- Services Dropdown (Desktop) -->
+                <div x-data="{ open: false, top: 0, left: 0 }" @click.outside="open = false" @close.stop="open = false">
+                    <button x-ref="btn" @click="open = !open; if(open){const r=$refs.btn.getBoundingClientRect(); top=r.bottom + 8; left=r.left}" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 transition duration-150 ease-in-out whitespace-nowrap">
+                        Services
+                        <svg class="h-4 w-4 fill-current transition-transform duration-200" :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <template x-teleport="body">
+                        <div x-show="open" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-1" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-1" :style="`position:fixed;top:${top}px;left:${left}px;`" class="w-56 rounded-lg bg-white shadow-lg ring-1 ring-black/5 py-1 z-[9999]" @click="open = false">
+                            <a href="{{ route('pre-need-plans.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-brand-blue/10 hover:text-brand-blue">Pre-Need Plans</a>
+                            <a href="{{ route('columbary-niches.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-brand-blue/10 hover:text-brand-blue">Columbary Niches</a>
+                            <a href="{{ route('cemetery.admin') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-brand-blue/10 hover:text-brand-blue">Cemetery Map</a>
+                            <a href="{{ route('paths.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-brand-blue/10 hover:text-brand-blue">Pathways</a>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Right: Notifications Bell + User Dropdown -->
+            <div class="flex items-center gap-1 shrink-0">
+                <!-- Notifications icon button -->
+                <a href="{{ route('notifications.index') }}" class="relative inline-flex items-center justify-center p-2 rounded-lg transition duration-150 ease-in-out {{ request()->routeIs('notifications.*') ? 'text-white bg-white/15' : 'text-white/80 hover:text-white hover:bg-white/10' }}" title="Notifications">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                    </svg>
+                    @if(($unreadNotifications ?? 0) > 0)
+                        <span class="absolute top-1 right-1 block h-2 w-2 rounded-full bg-brand-yellow ring-2 ring-brand-blue"></span>
+                    @endif
+                </a>
+
+                <!-- User Dropdown -->
+                <div class="relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
+                    <div @click="open = ! open">
+                        <button class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium text-white/90 hover:text-white hover:bg-white/10 focus:outline-none transition ease-in-out duration-150">
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                            <span class="hidden lg:inline">{{ Auth::user()->name }}</span>
+                            <svg class="hidden lg:block fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="absolute z-[9999] mt-2 w-48 rounded-md shadow-lg ltr:origin-top-right rtl:origin-top-left end-0" style="display: none;" @click="open = false">
+                        <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white">
+                            <a class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-blue-50 hover:text-brand-blue focus:outline-none focus:bg-blue-50 transition duration-150 ease-in-out" href="{{ route('profile.edit') }}">Profile</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a class="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-blue-50 hover:text-brand-blue focus:outline-none focus:bg-blue-50 transition duration-150 ease-in-out" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Log Out</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">{{ __('Dashboard') }}</x-responsive-nav-link>
-            @if(in_array($role, ['super_admin', 'rcc_staff']))
-            <x-responsive-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.*')">{{ __('Clients') }}</x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('plots.index')" :active="request()->routeIs('plots.*') || request()->routeIs('burials.*') || request()->routeIs('deceased.*')">{{ __('Lots & Burials') }}</x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('burial-permits.index')" :active="request()->routeIs('burial-permits.*')">{{ __('Permits (AF 58)') }}</x-responsive-nav-link>
-            @endif
-            <x-responsive-nav-link :href="route('contracts.index')" :active="request()->routeIs('contracts.*') || request()->routeIs('payments.*')">{{ __('Contracts & Billing') }}</x-responsive-nav-link>
-            @if(in_array($role, ['super_admin', 'rcc_staff']))
+
+    <!-- Mobile Slide-Down Panel -->
+    <div x-show="mobileNavOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2" class="lg:hidden border-t border-white/10 bg-brand-blue" style="display: none;">
+        <div class="px-4 py-3 space-y-1">
+            <a class="block px-3 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out {{ request()->routeIs('dashboard') ? 'text-white bg-white/15' : 'text-white/70 hover:text-white hover:bg-white/10' }}" href="{{ route('dashboard') }}">Dashboard</a>
+            <a class="block px-3 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out {{ request()->routeIs('clients.*') ? 'text-white bg-white/15' : 'text-white/70 hover:text-white hover:bg-white/10' }}" href="{{ route('clients.index') }}">Clients</a>
+            <a class="block px-3 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out {{ request()->routeIs('plots.*') || request()->routeIs('burials.*') || request()->routeIs('deceased.*') ? 'text-white bg-white/15' : 'text-white/70 hover:text-white hover:bg-white/10' }}" href="{{ route('plots.index') }}">Lots &amp; Burials</a>
+            <a class="block px-3 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out {{ request()->routeIs('burial-permits.*') ? 'text-white bg-white/15' : 'text-white/70 hover:text-white hover:bg-white/10' }}" href="{{ route('burial-permits.index') }}">Permits</a>
+            <a class="block px-3 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out {{ request()->routeIs('contracts.*') || request()->routeIs('payments.*') ? 'text-white bg-white/15' : 'text-white/70 hover:text-white hover:bg-white/10' }}" href="{{ route('contracts.index') }}">Contracts &amp; Billing</a>
+            <a class="block px-3 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out {{ request()->routeIs('inquiries.*') ? 'text-white bg-white/15' : 'text-white/70 hover:text-white hover:bg-white/10' }}" href="{{ route('inquiries.index') }}">Inquiries</a>
+            <a class="block px-3 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out {{ request()->routeIs('client-notifications.*') ? 'text-white bg-white/15' : 'text-white/70 hover:text-white hover:bg-white/10' }}" href="{{ route('client-notifications.index') }}">Client Notifs</a>
+            <a class="block px-3 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out {{ request()->routeIs('activity-logs.*') ? 'text-white bg-white/15' : 'text-white/70 hover:text-white hover:bg-white/10' }}" href="{{ route('activity-logs.index') }}">Activity Logs</a>
+
             <div class="pt-2 pb-1">
-                <p class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Services</p>
+                <p class="px-3 text-xs font-semibold text-white/50 uppercase tracking-wider">Services</p>
             </div>
-            <x-responsive-nav-link :href="route('pre-need-plans.index')" :active="request()->routeIs('pre-need-plans.*')">{{ __('Pre-Need Plans') }}</x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('columbary-niches.index')" :active="request()->routeIs('columbary-niches.*')">{{ __('Columbary Niches') }}</x-responsive-nav-link>
-            @if($role === 'super_admin')
-            <x-responsive-nav-link :href="route('burial-spots.index')" :active="request()->routeIs('burial-spots.*')">{{ __('Legacy Map') }}</x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('cemetery.admin')" :active="request()->routeIs('cemetery.*')">{{ __('Cemetery Map') }}</x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('paths.index')" :active="request()->routeIs('paths.*')">{{ __('Pathways') }}</x-responsive-nav-link>
-            @endif
-            <x-responsive-nav-link :href="route('inquiries.index')" :active="request()->routeIs('inquiries.*')">{{ __('Inquiries') }}</x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('client-notifications.index')" :active="request()->routeIs('client-notifications.*')">{{ __('Client Notifs') }}</x-responsive-nav-link>
-            @endif
-            @if($role === 'engr')
+            <a class="block px-3 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out {{ request()->routeIs('pre-need-plans.*') ? 'text-white bg-white/15' : 'text-white/70 hover:text-white hover:bg-white/10' }}" href="{{ route('pre-need-plans.index') }}">Pre-Need Plans</a>
+            <a class="block px-3 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out {{ request()->routeIs('columbary-niches.*') ? 'text-white bg-white/15' : 'text-white/70 hover:text-white hover:bg-white/10' }}" href="{{ route('columbary-niches.index') }}">Columbary Niches</a>
+            <a class="block px-3 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out {{ request()->routeIs('cemetery.*') ? 'text-white bg-white/15' : 'text-white/70 hover:text-white hover:bg-white/10' }}" href="{{ route('cemetery.admin') }}">Cemetery Map</a>
+            <a class="block px-3 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out {{ request()->routeIs('paths.*') ? 'text-white bg-white/15' : 'text-white/70 hover:text-white hover:bg-white/10' }}" href="{{ route('paths.index') }}">Pathways</a>
+
             <div class="pt-2 pb-1">
-                <p class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Map</p>
+                <p class="px-3 text-xs font-semibold text-white/50 uppercase tracking-wider">Account</p>
             </div>
-            <x-responsive-nav-link :href="route('cemetery.admin')" :active="request()->routeIs('cemetery.*')">{{ __('Cemetery Polygons') }}</x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('plots.index')" :active="request()->routeIs('plots.*')">{{ __('Burial Plotting & Blocks') }}</x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('paths.index')" :active="request()->routeIs('paths.*')">{{ __('Map Pathing') }}</x-responsive-nav-link>
-            @endif
-            @if($role === 'super_admin')
-            <x-responsive-nav-link :href="route('activity-logs.index')" :active="request()->routeIs('activity-logs.*')">{{ __('Activity Logs') }}</x-responsive-nav-link>
-            @endif
-            <x-responsive-nav-link :href="route('notifications.index')" :active="request()->routeIs('notifications.*')">{{ __('Notifications') }}</x-responsive-nav-link>
-        </div>
-        <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-            </div>
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">{{ __('Profile') }}</x-responsive-nav-link>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <x-responsive-nav-link :href="route('logout')"
-                        onclick="event.preventDefault(); this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </form>
-            </div>
+            <a class="block px-3 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out {{ request()->routeIs('notifications.*') ? 'text-white bg-white/15' : 'text-white/70 hover:text-white hover:bg-white/10' }}" href="{{ route('notifications.index') }}">Notifications</a>
+            <a class="block px-3 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out" href="{{ route('profile.edit') }}">Profile</a>
         </div>
     </div>
 </nav>

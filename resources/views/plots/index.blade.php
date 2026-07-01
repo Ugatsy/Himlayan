@@ -1,20 +1,20 @@
 <x-app-layout>
-    <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div>
+        <div class="max-w-7xl mx-auto">
             <div class="flex items-center justify-between mb-6">
                 <h1 class="text-2xl font-bold text-gray-900">Burial Plotting & Blocks</h1>
-                <a href="{{ route('plots.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 text-sm">+ Add Plot</a>
+                <a href="{{ route('plots.create') }}" class="bg-brand-blue text-white px-4 py-2 rounded-xl hover:bg-brand-blue-dark text-sm">+ Add Plot</a>
             </div>
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100">
                 <div class="p-6">
                     <div style="display: flex; gap: 20px;">
                         <div style="width: 320px; flex-shrink: 0;">
                             <input type="text" id="search-input" placeholder="Search plot number or section…" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;">
                             <div class="mb-3 flex gap-2 text-xs">
-                                <span class="px-2 py-1 rounded-full bg-green-100 text-green-800">Available</span>
-                                <span class="px-2 py-1 rounded-full bg-yellow-100 text-yellow-800">Reserved</span>
-                                <span class="px-2 py-1 rounded-full bg-red-100 text-red-800">Occupied</span>
-                                <span class="px-2 py-1 rounded-full bg-red-200 text-red-900">Full</span>
+                                <span class="px-2 py-1 rounded-full bg-green-100 text-green-700">Available</span>
+                                <span class="px-2 py-1 rounded-full bg-amber-100 text-amber-700">Reserved</span>
+                                <span class="px-2 py-1 rounded-full bg-red-100 text-red-700">Occupied</span>
+                                <span class="px-2 py-1 rounded-full bg-red-100 text-red-700">Full</span>
                             </div>
                             <div id="plot-list" style="max-height: 500px; overflow-y: auto; border: 1px solid #e5e7eb; border-radius: 4px; padding: 8px;">
                                 @forelse($plots as $plot)
@@ -334,51 +334,51 @@
                 <div class="space-y-3">
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Plot Number</label>
-                        <input type="text" name="plot_number" id="draw-form-plot_number" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                        <input type="text" name="plot_number" id="draw-form-plot_number" required class="mt-1 block w-full rounded-md bg-white border-gray-100 text-gray-900 shadow-sm focus:border-brand-blue focus:ring-brand-blue text-sm">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Section / Block</label>
-                        <input type="text" name="section" placeholder="e.g. Block A" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                        <input type="text" name="section" placeholder="e.g. Block A" class="mt-1 block w-full rounded-md bg-white border-gray-100 text-gray-900 shadow-sm focus:border-brand-blue focus:ring-brand-blue text-sm">
                     </div>
                     <div class="grid grid-cols-2 gap-3">
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Lot Type</label>
-                            <select name="lot_type" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                            <select name="lot_type" class="mt-1 block w-full rounded-md bg-white border-gray-100 text-gray-900 shadow-sm focus:border-brand-blue focus:ring-brand-blue text-sm">
                                 <option value="individual">Individual</option>
                                 <option value="family">Family</option>
                             </select>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Dimension</label>
-                            <input type="text" name="dimension" placeholder="e.g. 1.5m × 2.5m" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                            <input type="text" name="dimension" placeholder="e.g. 1.5m × 2.5m" class="mt-1 block w-full rounded-md bg-white border-gray-100 text-gray-900 shadow-sm focus:border-brand-blue focus:ring-brand-blue text-sm">
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-3">
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Capacity</label>
-                            <input type="number" name="capacity" value="1" min="1" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                            <input type="number" name="capacity" value="1" min="1" class="mt-1 block w-full rounded-md bg-white border-gray-100 text-gray-900 shadow-sm focus:border-brand-blue focus:ring-brand-blue text-sm">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Price (₱)</label>
-                            <input type="number" step="0.01" name="price" value="0" min="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                            <input type="number" step="0.01" name="price" value="0" min="0" class="mt-1 block w-full rounded-md bg-white border-gray-100 text-gray-900 shadow-sm focus:border-brand-blue focus:ring-brand-blue text-sm">
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">Status</label>
-                        <select name="status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm">
+                            <label class="block text-sm font-medium text-gray-700">Status</label>
+                        <select name="status" class="mt-1 block w-full rounded-md bg-white border-gray-100 text-gray-900 shadow-sm focus:border-brand-blue focus:ring-brand-blue text-sm">
                             <option value="available">Available</option>
                             <option value="reserved">Reserved</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Notes</label>
-                        <textarea name="notes" rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm"></textarea>
+                        <textarea name="notes" rows="2" class="mt-1 block w-full rounded-md bg-white border-gray-100 text-gray-900 shadow-sm focus:border-brand-blue focus:ring-brand-blue text-sm"></textarea>
                     </div>
                 </div>
 
                 <div class="flex items-center justify-end gap-3 mt-6">
-                    <button type="button" id="draw-form-cancel" class="text-gray-600 hover:text-gray-900 text-sm">Cancel</button>
-                    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 text-sm">Save Plot</button>
+                    <button type="button" id="draw-form-cancel" class="text-gray-500 hover:text-gray-700 text-sm">Cancel</button>
+                    <button type="submit" class="bg-brand-blue text-white px-4 py-2 rounded-xl hover:bg-brand-blue-dark text-sm">Save Plot</button>
                 </div>
             </form>
         </div>
